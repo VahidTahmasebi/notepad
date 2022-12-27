@@ -80,3 +80,28 @@ body {
 .notes__add:hover {
   background-color: #00af8c;
 }
+.notes__preview {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2em 3em;
+}
+.notes__title,
+.notes__body {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 1rem;
+  outline: 0;
+}
+.notes__title {
+  font-size: 3em;
+  font-weight: bold;
+}
+.notes__body {
+  flex-grow: 1;
+  margin-top: 2em;
+  line-height: 1.5;
+  font-size: 1.2em;
+  resize: none;
+}
