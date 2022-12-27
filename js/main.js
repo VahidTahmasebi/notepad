@@ -22,7 +22,8 @@ const notes = [
 class NotesAPI {
   // sort data
   static getAllNotes() {
-    const savedNotes = notes || [];
+    const savedNotes =
+      localStorage.setItem("notes-app", JSON.stringify(notes)) || [];
     return savedNotes.sort((a, b) => {
       return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
     });
@@ -41,6 +42,7 @@ class NotesAPI {
       noteToSave.updated = new Date().toISOString();
       notes.push(noteToSave);
     }
+    localStorage.setItem("notes-app", JSON.stringify(notes));
   }
   deleteNote() {}
 }
