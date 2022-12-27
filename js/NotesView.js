@@ -2,10 +2,11 @@ export default class NotesView {
   constructor(root, handlers) {
     this.root = root;
 
-    const { onNoteAdd, onNoteEdit, onNoteSelect } = handlers;
+    const { onNoteAdd, onNoteEdit, onNoteSelect, onNoteDelete } = handlers;
     this.onNoteAdd = onNoteAdd;
     this.onNoteEdit = onNoteEdit;
     this.onNoteSelect = onNoteSelect;
+    this.onNoteDelete = onNoteDelete;
 
     // add DOM
     this.root.innerHTML = `
@@ -41,6 +42,7 @@ export default class NotesView {
       });
     });
   }
+
   _createListItemHTML(id, title, body, updated) {
     // The maximum length of the text
     const MAX_BODY_LENGTH = 50;
@@ -64,6 +66,7 @@ export default class NotesView {
       </div>
     `;
   }
+
   updateNoteList(notes) {
     const notesContainer = this.root.querySelector(".notes--list");
 
@@ -80,5 +83,12 @@ export default class NotesView {
         this.onNoteSelect(noteItem.dataset.noteId),
       );
     });
+    notesContainer
+      .querySelectorAll(".notes__list-trash")
+      .forEach((noteItem) => {
+        item.addEventListener("click", () =>
+          this.onNoteDelete(noteItem.dataset.noteId),
+        );
+      });
   }
 }

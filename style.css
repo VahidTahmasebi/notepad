@@ -105,3 +105,19 @@ body {
   font-size: 1.2em;
   resize: none;
 }
+.notes__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.notes__list-trash {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background: var(--mainWhite);
+  color: var(--mainRed);
+}

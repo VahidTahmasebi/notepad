@@ -7,6 +7,7 @@ const view = new NotesView(app, {
   onNoteAdd() {},
   onNoteEdit(newTitle, newBody) {},
   onNoteSelect(noteId) {},
+  onNoteDelete(noteId) {},
 });
 
 view.updateNoteList(NotesAPI.getAllNotes());
