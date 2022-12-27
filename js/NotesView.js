@@ -1,9 +1,11 @@
 export default class NotesView {
-  constructor(root) {
+  constructor(root, handlers) {
     this.root = root;
-    const { onNoteAdd, onNoteEdit } = handlers;
+
+    const { onNoteAdd, onNoteEdit, onNoteSelect } = handlers;
     this.onNoteAdd = onNoteAdd;
     this.onNoteEdit = onNoteEdit;
+    this.onNoteSelect = onNoteSelect;
 
     // add DOM
     this.root.innerHTML = `
@@ -18,7 +20,7 @@ export default class NotesView {
           type="text"
           class="notes__title"
           placeholder="Subject..."/>
-        <textarea name="" class="notes__body" placeholder="notes..."></textarea></main>
+        <textarea name="" class="notes__body" placeholder="note..."></textarea></main>
     `;
 
     // access to dom
@@ -27,12 +29,12 @@ export default class NotesView {
     const inputBody = this.root.querySelector(".notes__body");
 
     // Command new note button
-    addNotesBtn.addEvenListener("click", () => {
+    addNotesBtn.addEventListener("click", () => {
       this.onNoteAdd();
     });
     // command event title and body preview
-    [inputTitle, inputBody].forEach((inputFiled) => {
-      inputFiled.addEvenListener("blur", () => {
+    [inputTitle, inputBody].forEach((inputField) => {
+      inputField.addEventListener("blur", () => {
         const newTitle = inputTitle.value.trim();
         const newBody = inputBody.value.trim();
         this.onNoteEdit(newTitle, newBody);
@@ -62,5 +64,21 @@ export default class NotesView {
       </div>
     `;
   }
-  updateNoteList(notes) {}
+  updateNoteList(notes) {
+    const notesContainer = this.root.querySelector(".notes--list");
+
+    notesContainer.innerHTML = "";
+    let notesList = "";
+    for (const note of notes) {
+      const { id, title, body, updated } = note;
+
+      const html = this._createListItemHTML(id, title, body, updated);
+      notesList += html;
+    }
+    notesContainer.querySelectorAll(".notes__list-item").forEach((noteItem) => {
+      noteItem.addEventListener("click", () =>
+        this.onNoteSelect(noteItem.dataset.noteId),
+      );
+    });
+  }
 }
