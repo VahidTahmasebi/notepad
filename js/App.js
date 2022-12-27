@@ -12,14 +12,23 @@ export default class App {
   _refreshNotes() {
     const notes = NotesAPI.getAllNotes();
 
+    this._saveNotes(notes);
+
+    if (notes.length > 0) {
+      this._setActiveNotes(notes[0]);
+    }
+  }
+
+  _saveNotes(notes) {
     // set notes
     this.notes = notes;
     this.view.updateNoteList(notes);
     this.view.updateNotePreviewVisibility(notes.length > 0);
+  }
 
-    // set active note
-    this.activeNote = notes[0];
-    this.view.updateActiveNote(notes[0]);
+  _setActiveNotes(note) {
+    this.activeNote = note = note;
+    this.view.updateActiveNote(note);
   }
 
   _handlers() {
@@ -43,9 +52,8 @@ export default class App {
       },
 
       onNoteSelect: (noteId) => {
-        const selectedNote = this.notes.find((n) => n.id === noteId);
-        this.activeNote = selectedNote;
-        this.view.updateActiveNote(selectedNote);
+        const selectedNote = this.notes.find((n) => n.id == noteId);
+        this._setActiveNotes(selectedNote);
       },
 
       onNoteDelete: (noteId) => {
