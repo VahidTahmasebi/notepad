@@ -63,7 +63,24 @@ body {
   color: var(--mainWhite);
   cursor: pointer;
 }
-
+.notes__list-item--selected {
+  padding: 5px;
+  border-radius: 7px;
+  font-weight: bold;
+  color: var(--mainGrey);
+  background: #eeeeee;
+}
+.notes__list-item--selected {
+  padding: 5px;
+  border-radius: 7px;
+  font-weight: bold;
+  color: var(--mainGrey);
+  background: #eeeeee;
+}
+.notes__list-title,
+.notes__list-updated {
+  padding: 10px;
+}
 .notes__add {
   width: 100%;
   margin-bottom: 1em;
