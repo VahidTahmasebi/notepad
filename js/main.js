@@ -27,6 +27,20 @@ class NotesAPI {
       return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
     });
   }
-  saveNote() {}
+  saveNote(noteToSave) {
+    const notes = NotesApi.getAllNotes();
+
+    const existedNote = notes.find((n) => n.id == noteToSave.id);
+
+    if (existedNote) {
+      existedNote.title = noteToSave.title;
+      existedNote.body = noteToSave.body;
+      existedNote.updated = new Date().toISOString();
+    } else {
+      noteToSave.id = new Date().getTime();
+      noteToSave.updated = new Date().toISOString();
+      notes.push(noteToSave);
+    }
+  }
   deleteNote() {}
 }
