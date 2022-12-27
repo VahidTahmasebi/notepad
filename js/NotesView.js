@@ -43,6 +43,7 @@ export default class NotesView {
     });
   }
 
+  //   notes list DOM
   _createListItemHTML(id, title, body, updated) {
     // The maximum length of the text
     const MAX_BODY_LENGTH = 50;
@@ -94,5 +95,19 @@ export default class NotesView {
           this.onNoteDelete(noteItem.dataset.noteId);
         });
       });
+  }
+
+//   selected note
+  updateActiveNote(note) {
+    this.root.querySelector(".notes__title").value = note.title;
+    this.root.querySelector(".notes__body").value = note.body;
+
+    this.root.querySelectorAll(".notes__list-item").forEach((item) => {
+      item.classList.remove("notes__list-item--selected");
+    });
+
+    this.root
+      .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
+      .classList.add("notes__list-item--selected");
   }
 }
