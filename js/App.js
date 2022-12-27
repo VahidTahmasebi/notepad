@@ -33,7 +33,14 @@ export default class App {
         this._refreshNotes();
       },
 
-      onNoteEdit: (newTitle, newBody) => {},
+      onNoteEdit: (newTitle, newBody) => {
+        NotesAPI.saveNote({
+          id: this.activeNote.id,
+          title: newTitle,
+          body: newBody,
+        });
+        this._refreshNotes();
+      },
 
       onNoteSelect: (noteId) => {
         const selectedNote = this.notes.find((n) => n.id === noteId);
@@ -41,7 +48,10 @@ export default class App {
         this.view.updateActiveNote(selectedNote);
       },
 
-      onNoteDelete: (noteId) => {},
+      onNoteDelete: (noteId) => {
+        NotesAPI.deleteNote(noteId);
+        this._refreshNotes();
+      },
     };
   }
 }
