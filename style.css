@@ -1,0 +1,82 @@
+@import url(//fonts.googleapis.com/css?family=Vazirmatn);
+
+:root {
+  --primaryColor: #6d28d9;
+  --secondaryColor: #ede9fe;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGrey: #7c7c7c;
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+  --mainRed: #db2777;
+  --bodyColor: #f6f6f6;
+  --nav-width: 250px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Vazirmatn", tahoma, Arial;
+}
+
+body {
+  color: var(--mainBlack);
+  background-color: var(--bodyColor);
+}
+.notes {
+  display: flex;
+}
+.notes__sidebar {
+  width: var(--nav-width);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0.75rem 0.2rem;
+  border-radius: 100px 0 0 0;
+  background: linear-gradient(180deg, #324467, #283142);
+  background-color: var(--mainWhite);
+  transition: all 0.3s ease-out;
+}
+.notes__logo {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  font-weight: 800;
+  color: var(--mainWhite);
+}
+.notes__list {
+  flex-grow: 1;
+  margin: 1rem 0;
+  overflow-y: auto;
+}
+.notes__list::-webkit-scrollbar {
+  display: none;
+}
+.notes__list-item {
+  margin: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--mainWhite);
+  cursor: pointer;
+}
+
+.notes__add {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.75em 0;
+  border: 0;
+  border-radius: 7px;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: var(--secondaryColor);
+  background-color: #009578;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.notes__add:hover {
+  background-color: #00af8c;
+}
