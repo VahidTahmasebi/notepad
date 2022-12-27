@@ -30,7 +30,7 @@ export default class NotesView {
     addNotesBtn.addEvenListener("click", () => {
       this.onNoteAdd();
     });
-// command event title and body preview
+    // command event title and body preview
     [inputTitle, inputBody].forEach((inputFiled) => {
       inputFiled.addEvenListener("blur", () => {
         const newTitle = inputTitle.value.trim();
@@ -39,4 +39,28 @@ export default class NotesView {
       });
     });
   }
+  _createListItemHTML(id, title, body, updated) {
+    // The maximum length of the text
+    const MAX_BODY_LENGTH = 50;
+    return `
+      <div class="notes__list-item" data-note-id='${id}'>
+         <div class="notes__item-header">
+         <div class="notes__small-title">${title}</div>
+         <span class="notes__list-trash" data-note-id='${id}'><i class="far fa-trash-alt"></i></span>
+         </div>
+         
+         <div class="notes__small-body">${body}
+         ${body.substring(0, MAX_BODY_LENGTH)}
+         ${body.length > MAX_BODY_LENGTH ? "..." : ""}
+         </div>
+         <div class="notes__small-updated">
+         ${new Date(updated).toLocaleString("en", {
+           dateStyle: "full",
+           timeStyle: "short",
+         })}
+         </div>
+      </div>
+    `;
+  }
+  updateNoteList(notes) {}
 }
