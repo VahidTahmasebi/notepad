@@ -68,7 +68,7 @@ export default class NotesView {
   }
 
   updateNoteList(notes) {
-    const notesContainer = this.root.querySelector(".notes--list");
+    const notesContainer = this.root.querySelector(".notes__list");
 
     notesContainer.innerHTML = "";
     let notesList = "";
@@ -78,17 +78,21 @@ export default class NotesView {
       const html = this._createListItemHTML(id, title, body, updated);
       notesList += html;
     }
+    notesContainer.innerHTML = notesList;
+
     notesContainer.querySelectorAll(".notes__list-item").forEach((noteItem) => {
       noteItem.addEventListener("click", () =>
         this.onNoteSelect(noteItem.dataset.noteId),
       );
     });
+
     notesContainer
       .querySelectorAll(".notes__list-trash")
       .forEach((noteItem) => {
-        item.addEventListener("click", () =>
-          this.onNoteDelete(noteItem.dataset.noteId),
-        );
+        noteItem.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.onNoteDelete(noteItem.dataset.noteId);
+        });
       });
   }
 }
