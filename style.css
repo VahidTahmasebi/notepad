@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 0.75rem 0.2rem;
-  border-radius: 100px 0 0 0;
+  border-radius: 0 100px 0 0;
   background: linear-gradient(180deg, #324467, #283142);
   background-color: var(--mainWhite);
   transition: all 0.3s ease-out;
