@@ -41,6 +41,9 @@ export default class NotesView {
         this.onNoteEdit(newTitle, newBody);
       });
     });
+
+    // In the first moment visible preview be inactive
+    this.updateNotePreviewVisibility(false);
   }
 
   //   notes list DOM
@@ -97,7 +100,7 @@ export default class NotesView {
       });
   }
 
-//   selected note
+  //   selected note
   updateActiveNote(note) {
     this.root.querySelector(".notes__title").value = note.title;
     this.root.querySelector(".notes__body").value = note.body;
@@ -109,5 +112,11 @@ export default class NotesView {
     this.root
       .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
       .classList.add("notes__list-item--selected");
+  }
+  // visible preview note with click
+  updateNotePreviewVisibility(visible) {
+    this.root.querySelector(".notes__preview").style.visibility = visible
+      ? "visible"
+      : "hidden";
   }
 }
